@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compute-center-types>
+    <compute-center-type>
+        <name>Verizon Cloud</name>
+        <description>Verizon Cloud</description>
+        <connector-impl-class-name>
+            com.appdynamics.cloud.connectors.verizon.VerizonConnector
+        </connector-impl-class-name>
+        <property-definitions>
+            <property-definition>
+                <name>Access Key</name>
+                <description>Access Key</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Secret Access Key</name>
+                <description>Secret Access Key</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Access URL</name>
+                <description>Access URL of Verizon cloud</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+        </property-definitions>
+        <machine-descriptor-definitions>
+            <property-definition>
+                <name>VM Name</name>
+                <description>Virtual Machine Name</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Description</name>
+                <description>Virtual Machine Description</description>
+                <required>false</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Processor Cores</name>
+                <description>Processor Cores</description>
+                <required>false</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values>1,2,3,4,5,6,7,8</allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Processor Speed</name>
+                <description>Processor Speed in MHz</description>
+                <required>false</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values>500,1000,2000</allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Memory in GB</name>
+                <description>Memory in GB</description>
+                <required>false</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+        </machine-descriptor-definitions>
+    </compute-center-type>
+</compute-center-types>

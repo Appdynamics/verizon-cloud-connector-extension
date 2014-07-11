@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<image-types>
+	<image-type>
+        <name>Verizon Cloud Image</name>
+        <description>Verizon Cloud Image</description>
+		<property-definitions>
+            <property-definition>
+                <name>OS Image</name>
+                <description>OS Image</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values>CentOS 6.4 x64 **DEPRECATED**,Red Hat Enterprise Linux 5.9 x64,Red Hat Enterprise Linux 5.10 i386,Red Hat Enterprise Linux 5.10 x86_64,Ubuntu 12.04.4 Server LTS x32,CentOS 5.10 i386,CentOS 6.5 i386,FreeBSD 10.0 x64,pfSense 2.1.2,Red Hat Enterprise Linux 6.5 i386,CentOS 5.10 x86_64,CentOS 6.5 x64,Debian 7.5.0 x64,Ubuntu 10.04.4 Server LTS x64,Windows Server 2008 Standard SQL 2008 R2 Web 64-Bit 40GB,Windows Server 2008 Standard 64-Bit 40GB,Debian 7.2.0 x64,Red Hat Enterprise Linux 5.9 x32,Red Hat Enterprise Linux 6.5 x86_64,Ubuntu 12.04.4 Server LTS x64,Windows Server 2008 Enterprise 64-Bit 40GB,Windows Server 2008 Standard SQL 2008 R2 Standard 64-Bit 40GB,Windows Server 2012 SQL 2012 Web 64-Bit 50GB,Red Hat Enterprise Linux 6.4 i386,Red Hat Enterprise Linux 6.4 x64,Windows Server 2012 SQL 2012 Standard 64-Bit 50GB,Windows Server 2012 64-Bit 50GB</allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+		</property-definitions>
+		<supported-compute-center-types>
+			<compute-center-type>Verizon Cloud</compute-center-type>
+		</supported-compute-center-types>
+	</image-type>
+</image-types>
