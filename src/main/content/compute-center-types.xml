@@ -62,7 +62,7 @@
             <property-definition>
                 <name>Processor Cores</name>
                 <description>Processor Cores</description>
-                <required>false</required>
+                <required>true</required>
                 <type>STRING</type>
                 <default-string-value></default-string-value>
                 <string-max-length>80</string-max-length>
@@ -72,7 +72,7 @@
             <property-definition>
                 <name>Processor Speed</name>
                 <description>Processor Speed in MHz</description>
-                <required>false</required>
+                <required>true</required>
                 <type>STRING</type>
                 <default-string-value></default-string-value>
                 <string-max-length>80</string-max-length>
@@ -82,7 +82,7 @@
             <property-definition>
                 <name>Memory in GB</name>
                 <description>Memory in GB</description>
-                <required>false</required>
+                <required>true</required>
                 <type>STRING</type>
                 <default-string-value></default-string-value>
                 <string-max-length>80</string-max-length>
