@@ -61,7 +61,6 @@ public class RestClient {
     private <T> T castResponse(ClientResponse response, Class<T> type) {
 
         String responseJson = response.getEntity(String.class);
-        System.out.println(responseJson);
         T respObject = gson.fromJson(responseJson, type);
         return respObject;
     }
@@ -69,7 +68,6 @@ public class RestClient {
     private <T> T castResponse(ClientResponse response, Type type) {
 
         String responseJson = response.getEntity(String.class);
-        System.out.println(responseJson);
         JsonObject jsonObject = parser.parse(responseJson).getAsJsonObject();
         T respObject = gson.fromJson(jsonObject, type);
         return respObject;
@@ -161,7 +159,6 @@ public class RestClient {
     private String sign(ClientRequest request, MultivaluedMap<String, Object> headers) throws IllegalStateException, UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
         StringBuilder stringToSign = new StringBuilder().append(getVerb(request)).append(getContentType(headers)).append(getDate(headers)).append(getCanonicalizedHeaders(headers)).append(getCanonicalizedResource(request));
 
-        System.out.println(stringToSign);
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(new SecretKeySpec(getSecretKey().getBytes("UTF-8"), "HmacSHA256"));
         byte[] digest = mac.doFinal(stringToSign.toString().getBytes("UTF-8"));
