@@ -64,6 +64,9 @@ To launch an instance click the image created in the above step and click on Lau
 
 ![alt tag](https://github.com/Appdynamics/verizon-cloud-connector-extension/raw/master/verizon_launch_instance.png)
 
+##Known Issue
+When terminating an intance, unabel to delete the assigned public IP of that instance.
+
 
 ##Contributing
 
