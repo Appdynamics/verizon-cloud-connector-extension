@@ -52,6 +52,8 @@ http://cloud.verizon.com/documentation/CreatingTheAPIKeyPair.htm
 
 Click Compute Cloud->Register Compute Cloud. Refer to the image below
 
+<b>Note:</b> Access URL should be the URL which you see after login to the Verizon cloud. In my case it is https://iadg2.cloud.verizon.com. Please do not use https://api.cloud.verizon.com.
+
 ![alt tag](https://github.com/Appdynamics/verizon-cloud-connector-extension/raw/master/verizon_compute-cloud.png)
 
 Click Image->Register Image. Refer to the image below
