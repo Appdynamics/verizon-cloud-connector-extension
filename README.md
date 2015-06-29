@@ -36,8 +36,8 @@ Lastly, the verizon-cloud-connector-extension may be used to stage migration of 
 </table>
 
 ##Prerequisite
-Create a key pair to use this connector extension. Follow the link to create a key pair
-http://cloud.verizon.com/documentation/CreatingTheAPIKeyPair.htm
+Create a key pair to use this connector extension. To create a key pair look for ```To Create A Key Pair``` section of
+http://cloud.verizon.com/documentation/APIAuthentication_1.htm  
 
 
 ##Installation
