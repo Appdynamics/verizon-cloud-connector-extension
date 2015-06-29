@@ -11,7 +11,27 @@
                 <type>STRING</type>
                 <default-string-value></default-string-value>
                 <string-max-length>80</string-max-length>
-                <allowed-string-values>CentOS 6.4 x64 **DEPRECATED**,Red Hat Enterprise Linux 5.9 x64,Red Hat Enterprise Linux 5.10 i386,Red Hat Enterprise Linux 5.10 x86_64,Ubuntu 12.04.4 Server LTS x32,CentOS 5.10 i386,CentOS 6.5 i386,FreeBSD 10.0 x64,pfSense 2.1.2,Red Hat Enterprise Linux 6.5 i386,CentOS 5.10 x86_64,CentOS 6.5 x64,Debian 7.5.0 x64,Ubuntu 10.04.4 Server LTS x64,Windows Server 2008 Standard SQL 2008 R2 Web 64-Bit 40GB,Windows Server 2008 Standard 64-Bit 40GB,Debian 7.2.0 x64,Red Hat Enterprise Linux 5.9 x32,Red Hat Enterprise Linux 6.5 x86_64,Ubuntu 12.04.4 Server LTS x64,Windows Server 2008 Enterprise 64-Bit 40GB,Windows Server 2008 Standard SQL 2008 R2 Standard 64-Bit 40GB,Windows Server 2012 SQL 2012 Web 64-Bit 50GB,Red Hat Enterprise Linux 6.4 i386,Red Hat Enterprise Linux 6.4 x64,Windows Server 2012 SQL 2012 Standard 64-Bit 50GB,Windows Server 2012 64-Bit 50GB</allowed-string-values>
+                <allowed-string-values>pfSense 2.1.2 x64,Big IP F5 11.5.2,CentOS 7 x64,Ubuntu 12.04 LTS x64,Ubuntu 14.04 LTS x64,FreeBSD 10.0 x64,Windows Server 2008 Standard SQL 2008 R2 Web 64-Bit 40GB,Windows Server 2008 Standard 64-Bit 40GB,Windows Server 2008 Enterprise 64-Bit 40GB,Windows Server 2008 Standard SQL 2008 R2 Standard 64-Bit 40GB,Windows Server 2012 SQL 2012 Web 64-Bit 50GB,Windows Server 2012 SQL 2012 Standard 64-Bit 50GB,Windows Server 2012 64-Bit 50GB,Juniper Firefly 12.1x47,Debian 7 (Wheezy) x86_64,centos 6.6 x86_64,CentOS 5.11 x64,Red Hat Enterprise Linux 5.11 x86_64,Red Hat Enterprise Linux 6.6 x86_64,CentOS 6.6 x64 with Docker</allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Account</name>
+                <description>Verizon account ID or Number</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
+                <default-file-value></default-file-value>
+            </property-definition>
+            <property-definition>
+                <name>Cloudspace</name>
+                <description>Verizon cloudspace name</description>
+                <required>true</required>
+                <type>STRING</type>
+                <default-string-value></default-string-value>
+                <string-max-length>80</string-max-length>
+                <allowed-string-values></allowed-string-values>
                 <default-file-value></default-file-value>
             </property-definition>
 		</property-definitions>

@@ -42,6 +42,10 @@ class Utils {
 
     public static final String OS_IMAGE_PROP = "OS Image";
 
+    public static final String ACCOUNT = "Account";
+
+    public static final String CLOUDSPACE = "Cloudspace";
+
     private Utils() {
     }
 
@@ -84,5 +88,13 @@ class Utils {
 
     public static String getOsImage(IProperty[] properties, IControllerServices controllerServices) {
         return controllerServices.getStringPropertyValueByName(properties, OS_IMAGE_PROP);
+    }
+
+    public static String getAccount(IProperty[] properties, IControllerServices controllerServices) {
+        return controllerServices.getStringPropertyValueByName(properties, ACCOUNT);
+    }
+
+    public static String getCloudspace(IProperty[] properties, IControllerServices controllerServices) {
+        return controllerServices.getStringPropertyValueByName(properties, CLOUDSPACE);
     }
 }

@@ -14,6 +14,11 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.ClientFilter;
 import com.sun.jersey.core.util.Base64;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriBuilder;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.security.InvalidKeyException;
@@ -26,10 +31,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriBuilder;
 
 public class RestClient {
 
@@ -38,6 +39,7 @@ public class RestClient {
     private final Client client;
     private final String accessKey;
     private final String secretKey;
+    private String cloudSpace;
     private Gson gson = new Gson();
     private JsonParser parser = new JsonParser();
 
@@ -56,6 +58,10 @@ public class RestClient {
 
     public String getSecretKey() {
         return secretKey;
+    }
+
+    public void setCloudSpace(String cloudSpace) {
+        this.cloudSpace = cloudSpace;
     }
 
     private <T> T castResponse(ClientResponse response, Class<T> type) {
@@ -147,8 +153,13 @@ public class RestClient {
             MultivaluedMap headers = request.getHeaders();
 
             try {
+                if(cloudSpace != null) {
+                    headers.add("x-tmrk-cloudspace", cloudSpace);
+                }
+
                 String signature = sign(request, headers);
                 headers.add("x-tmrk-authorization", new StringBuilder().append("CloudApi AccessKey=").append(getAccessKey()).append(" SignatureType=").append("HmacSHA256").append(" Signature=").append(signature).toString());
+
             } catch (Exception ex) {
                 throw new ClientHandlerException("Error signing request headers", ex);
             }

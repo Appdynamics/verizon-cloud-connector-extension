@@ -1,18 +1,23 @@
 package com.appdynamics.cloud.connectors.verizon.rest;
 
 import com.appdynamics.cloud.connectors.verizon.exception.TaskExecutionException;
+import com.appdynamics.cloud.connectors.verizon.types.Cloudspace;
+import com.appdynamics.cloud.connectors.verizon.types.CloudspaceItem;
 import com.appdynamics.cloud.connectors.verizon.types.EndPoint;
 import com.appdynamics.cloud.connectors.verizon.types.Group;
 import com.appdynamics.cloud.connectors.verizon.types.IPAddress;
+import com.appdynamics.cloud.connectors.verizon.types.Identity;
 import com.appdynamics.cloud.connectors.verizon.types.Job;
 import com.appdynamics.cloud.connectors.verizon.types.MimeType;
 import com.appdynamics.cloud.connectors.verizon.types.VerizonVM;
 import com.appdynamics.cloud.connectors.verizon.types.Vnic;
 import com.google.gson.reflect.TypeToken;
 import com.singularity.ee.connectors.api.ConnectorException;
-import com.sun.jersey.api.client.ClientResponse;
+import org.apache.commons.lang3.text.StrSubstitutor;
+
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
@@ -22,11 +27,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang3.text.StrSubstitutor;
 
 public class RestClientOperations {
 
     private static final Logger LOG = Logger.getLogger(RestClientOperations.class.getName());
+
+    private static final String GET_IDENTITY_URI = "https://identity.cloud.verizon.com/ams/identity/current";
+    private static final String GET_CLOUDSPACE_URI = "https://identity.cloud.verizon.com/ams/cloudspace/account/{ACCOUNT}";
 
     private static final String VM_POST_DATA_TEMPLATE = "{" +
             "\"type\":\"application/vnd.terremark.ecloud.vm.v1+json\"," +
@@ -48,9 +55,29 @@ public class RestClientOperations {
 
     public void validateCredentials() throws ConnectorException {
         LOG.log(Level.INFO, "Validating credentials");
-        String endPoint = EndPoint.IPADDRESS.getEndPoint();
-        String createIpUri = buildEndPointURI(endPoint);
-        restClient.options(createIpUri, ClientResponse.class);
+        restClient.get(GET_IDENTITY_URI, Identity.class);
+    }
+
+    public void setCloudspace(String account, String cloudspaceName) throws ConnectorException {
+        String cloudSpace = getCloudSpace(account, cloudspaceName);
+        restClient.setCloudSpace(cloudSpace);
+    }
+
+    private String getCloudSpace(String account, String cloudspaceName) throws ConnectorException {
+        String cloudspaceUri = GET_CLOUDSPACE_URI;
+        cloudspaceUri = cloudspaceUri.replace("{ACCOUNT}", account);
+        Cloudspace cloudspace = restClient.get(cloudspaceUri, Cloudspace.class);
+        if (cloudspace != null) {
+            List<CloudspaceItem> items = cloudspace.getItems();
+            if (items != null) {
+                for (CloudspaceItem cloudspaceItem : items) {
+                    if (cloudspaceName.equals(cloudspaceItem.getName())) {
+                        return cloudspaceItem.getId();
+                    }
+                }
+            }
+        }
+        throw new ConnectorException("Cloudspace with name [" + cloudspaceName + "] not found in account [" + account + "]");
     }
 
     public Job createPublicIP() throws ConnectorException {

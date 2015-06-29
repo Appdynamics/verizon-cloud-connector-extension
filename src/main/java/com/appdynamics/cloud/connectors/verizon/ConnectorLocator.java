@@ -19,9 +19,9 @@ import com.appdynamics.cloud.connectors.verizon.exception.NoAlgoException;
 import com.appdynamics.cloud.connectors.verizon.rest.RestClient;
 import com.singularity.ee.connectors.api.IControllerServices;
 import com.singularity.ee.connectors.entity.api.IComputeCenter;
-import com.singularity.ee.connectors.entity.api.IImageStore;
 import com.singularity.ee.connectors.entity.api.IProperty;
 import com.sun.jersey.core.util.Base64;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -55,13 +55,9 @@ class ConnectorLocator {
         return getConnector(computeCenter.getProperties(), controllerServices);
     }
 
-    public RestClient getConnector(IImageStore imageStore, IControllerServices controllerServices) {
-        return getConnector(imageStore.getProperties(), controllerServices);
-    }
-
-    public RestClient getConnector(IProperty[] properties, IControllerServices controllerServices) {
-        String accessKey = Utils.getAccessKey(properties, controllerServices);
-        String secretKey = Utils.getSecretKey(properties, controllerServices);
+    public RestClient getConnector(IProperty[] computeCenterProperties, IControllerServices controllerServices) {
+        String accessKey = Utils.getAccessKey(computeCenterProperties, controllerServices);
+        String secretKey = Utils.getSecretKey(computeCenterProperties, controllerServices);
 
         RestClient restClient = getRestClient(accessKey, secretKey);
 

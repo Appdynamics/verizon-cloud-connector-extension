@@ -46,20 +46,27 @@ public class VerizonConnector implements IConnector {
     @Override
     public IMachine createMachine(IComputeCenter iComputeCenter, IImage iImage, IMachineDescriptor iMachineDescriptor) throws InvalidObjectException, ConnectorException {
 
-        final RestClient connector = ConnectorLocator.getInstance().getConnector(iComputeCenter.getProperties(), controllerServices);
 
         String accessURL = Utils.getAccessURL(iComputeCenter.getProperties(), controllerServices);
         //String machineType = Utils.getMachineType(iComputeCenter.getProperties(), controllerServices);
         String memory = Utils.getMemory(iMachineDescriptor.getProperties(), controllerServices);
+
         String osImage = Utils.getOsImage(iImage.getProperties(), controllerServices);
+        String account = Utils.getAccount(iImage.getProperties(), controllerServices);
+        String cloudSpaceName = Utils.getCloudspace(iImage.getProperties(), controllerServices);
+
         String processorCores = Utils.getProcessorCores(iMachineDescriptor.getProperties(), controllerServices);
         String processorSpeed = Utils.getProcessorSpeed(iMachineDescriptor.getProperties(), controllerServices);
         String vmDescription = Utils.getVmDescription(iMachineDescriptor.getProperties(), controllerServices);
         String vmName = Utils.getVmName(iMachineDescriptor.getProperties(), controllerServices);
 
+        final RestClient connector = ConnectorLocator.getInstance().getConnector(iComputeCenter.getProperties(), controllerServices);
         AgentResolutionEncoder agentResolutionEncoder = getAgentResolutionEncoder(iComputeCenter);
 
         RestClientOperations restClientOperations = new RestClientOperations(connector, accessURL);
+
+        restClientOperations.setCloudspace(account, cloudSpaceName);
+
         //create public ip address                                                                
         Job publicIPJob = restClientOperations.createPublicIP();
         String publicIpHref = publicIPJob.getTarget().getHref();
@@ -68,7 +75,7 @@ public class VerizonConnector implements IConnector {
         String publicIp = null;
         try {
             //Create VM
-            String diskTemplateEndpoint = OSImageTemplateMapper.getDiskTemplateEndpoint(osImage);
+            String diskTemplateEndpoint = OSImageTemplateMapper.getDiskTemplateEndpoint(osImage, accessURL);
             Job vmJob = restClientOperations.createVM(vmName, vmDescription, publicIpHref, diskTemplateEndpoint, memory, processorCores, processorSpeed);
             VerizonVM vm = restClientOperations.getVm(vmJob.getTarget().getHref());
             instanceCreated = true;
